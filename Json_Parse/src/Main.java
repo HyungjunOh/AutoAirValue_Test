@@ -1,3 +1,5 @@
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -12,9 +14,34 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		//3. ½Ã°£¸¶´Ù ÃøÁ¤¼Òº° ´ë±â ÃøÁ¤°ªÀ» ÀÚµ¿À¸·Î ¹Ş¾Æº¸ÀÚ
-		//API¿¡¼­ Á¤½Ã¿¡ ¾÷µ¥ÀÌÆ® X (¾÷µ¥ÀÌÆ®°¡ µÉ¶§±îÁö Á¶È¸ÇÏ¸é ¸®Äù½ºÆ® ÃÊ°úÇÔ. ¾÷µ¥ÀÌÆ® ½Ã°£À» È®ÀÎÇØº¸ÀÚ)
-		//9:12ºĞ Ã¼Å© -> 9½Ã µ¥ÀÌÅÍ µé¾î¿È.
+		//DBConnection
+		Connection conn = DBConnection.getConn();
+		System.out.println(conn);
+//		System.out.println("ë‹«í˜ìƒíƒœ : " + conn.isClosed());
+//		DBConnection.close();
+//		System.out.println("ë‹«í˜ìƒíƒœ : " + conn.isClosed());
+//
+//		conn = DBConnection.getConn();
+//		System.out.println("ë‹«í˜ìƒíƒœ : " + conn.isClosed());
+		
+		
+//		//4. ì¸¡ì •ì†Œ mysqlì— ì €ì¥ í•œë²ˆë§Œ í• ê²ƒ!!
+//		StationParser stationParser = new StationParser();		
+//		List<Map<String, String>> station = stationParser.getStation("ì„œìš¸");
+//		System.out.println("Station Update");
+//		for(int i=0; i<station.size(); i++) {
+//			System.out.println( station.get(i).get("stationName").toString() + " / " 
+//					+ station.get(i).get("dmX").toString() + " / " 
+//					+ station.get(i).get("dmY").toString() );
+//			DBConnection.insert_Station(i+1, station.get(i).get("stationName").toString(), 
+//					Double.parseDouble(station.get(i).get("dmX")), Double.parseDouble(station.get(i).get("dmY")));
+//		}
+//		
+		
+		
+		//3. ì‹œê°„ë§ˆë‹¤ ì¸¡ì •ì†Œë³„ ëŒ€ê¸° ì¸¡ì •ê°’ì„ ìë™ìœ¼ë¡œ ë°›ì•„ë³´ì
+		//APIì—ì„œ ì •ì‹œì— ì—…ë°ì´íŠ¸ X (ì—…ë°ì´íŠ¸ê°€ ë ë•Œê¹Œì§€ ì¡°íšŒí•˜ë©´ ë¦¬í€˜ìŠ¤íŠ¸ ì´ˆê³¼í•¨. ì—…ë°ì´íŠ¸ ì‹œê°„ì„ í™•ì¸í•´ë³´ì)
+		//9:12ë¶„ ì²´í¬ -> 9ì‹œ ë°ì´í„° ë“¤ì–´ì˜´.
 		MyTimer myTimer = new MyTimer();
 		Timer timer = new Timer();
 		
@@ -24,8 +51,8 @@ public class Main {
 		int hour = cal.get(Calendar.HOUR);
 		int minute = cal.get(Calendar.MINUTE);
 		
-		//timeFlagÀÇ ºĞ¸¶´Ù ¸®Äù½ºÆ®.
-		int timeFlag = 12;
+		//timeFlagì˜ ë¶„ë§ˆë‹¤ ë¦¬í€˜ìŠ¤íŠ¸.
+		int timeFlag = 20;
 		int waitTime = 0;
 		
 		if( minute > timeFlag) {

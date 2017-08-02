@@ -12,27 +12,28 @@ public class MyTimer extends TimerTask{
 		AirValueParser airValueParser = new AirValueParser();
 		
 		
-		//1. ÃøÁ¤¼Ò ¸ñ·Ï°ú ÁÂÇ¥
-		List<Map<String, String>> station = stationParser.getStation("¼­¿ï");
+		//1. ì¸¡ì •ì†Œ ëª©ë¡ê³¼ ì¢Œí‘œ
+		List<Map<String, String>> station = stationParser.getStation("ì„œìš¸");
 
-		for(int i=0; i<station.size(); i++) {
-			System.out.println( station.get(i).get("stationName").toString() + " / " 
-					+ station.get(i).get("dmX").toString() + " / " 
-					+ station.get(i).get("dmY").toString() );
-		}
+//		for(int i=0; i<station.size(); i++) {
+//			System.out.println( station.get(i).get("stationName").toString() + " / " 
+//					+ station.get(i).get("dmX").toString() + " / " 
+//					+ station.get(i).get("dmY").toString() );
+//		}
 		
 		
-		//2. ÃøÁ¤¼ÒÀÇ ´ë±â ÃøÁ¤°ª
-		// ¿©±â¼­ getAirValueFromJSONÀ» Á÷Á¢ ½áµµ ±¦Âú´Ù. À§¿¡ ÃøÁ¤¼Ò ¸ñ·ÏÀ» ¿äÃ»ÇÏ´Â °Í°ú´Â ´Ş¸® ÆÄ½Ì¹ŞÀº °ªµéÀÌ ¸¹ÀÌ ÇÊ¿äÇÑ °æ¿ì¿¡´Â ±×³É JSONArray¸¦ ½áº¸ÀÚ.
-		// È¤Àº BeanÀ» ½á¼­ Á÷Á¢ ºÙ¿©º¸´Â °Íµµ ÁÁÀ» °Í °°´Ù. (TODO)
+		//2. ì¸¡ì •ì†Œì˜ ëŒ€ê¸° ì¸¡ì •ê°’
+		// ì—¬ê¸°ì„œ getAirValueFromJSONì„ ì§ì ‘ ì¨ë„ ê´œì°®ë‹¤. ìœ„ì— ì¸¡ì •ì†Œ ëª©ë¡ì„ ìš”ì²­í•˜ëŠ” ê²ƒê³¼ëŠ” ë‹¬ë¦¬ íŒŒì‹±ë°›ì€ ê°’ë“¤ì´ ë§ì´ í•„ìš”í•œ ê²½ìš°ì—ëŠ” ê·¸ëƒ¥ JSONArrayë¥¼ ì¨ë³´ì.
+		// í˜¹ì€ Beanì„ ì¨ì„œ ì§ì ‘ ë¶™ì—¬ë³´ëŠ” ê²ƒë„ ì¢‹ì„ ê²ƒ ê°™ë‹¤. (TODO)
 		List<Map<String, String>> airValue = airValueParser.getValue(station.get(0).get("stationName").toString());
-		
-		for(int i=0; i<airValue.size(); i++) {
-			System.out.println(airValue.get(i).toString());
-		}
-		//ÃøÁ¤¼Òº° ÃÖ±Ù µ¥ÀÌÅÍ.
+//		
+//		for(int i=0; i<airValue.size(); i++) {
+//			System.out.println(airValue.get(i).toString());
+//		}
+		//ì¸¡ì •ì†Œë³„ ìµœê·¼ ë°ì´í„°.
 		for(int i=0; i<station.size(); i++) {
 			System.out.println(station.get(i).get("stationName").toString() + " = " + airValueParser.getValue(station.get(i).get("stationName")).get(0).toString() );
+			DBConnection.insert_AirValue(station.get(i).get("stationName").toString(), (airValueParser.getValue(station.get(i).get("stationName")).get(0)).get("dataTime"), (airValueParser.getValue(station.get(i).get("stationName")).get(0)).get("khaiGrade"), (airValueParser.getValue(station.get(i).get("stationName")).get(0)).get("khaiValue") );
 		}
 		
 	}
