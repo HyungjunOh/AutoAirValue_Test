@@ -36,7 +36,6 @@ public class Main {
 //			DBConnection.insert_Station(i+1, station.get(i).get("stationName").toString(), 
 //					Double.parseDouble(station.get(i).get("dmX")), Double.parseDouble(station.get(i).get("dmY")));
 //		}
-//		
 		
 		
 		//3. 시간마다 측정소별 대기 측정값을 자동으로 받아보자
@@ -52,7 +51,7 @@ public class Main {
 		int minute = cal.get(Calendar.MINUTE);
 		
 		//timeFlag의 분마다 리퀘스트.
-		int timeFlag = 20;
+		int timeFlag = 25;
 		int waitTime = 0;
 		
 		if( minute > timeFlag) {

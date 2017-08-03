@@ -73,7 +73,9 @@ public class DBConnection {
 		return connection;
 	}
 	
-	public static Connection insert_AirValue(String stationName, String dateTime, String rkhaiGrade, String rkhaiValue){
+	// 최근의 대기 데이터 수집.
+	public static Connection insert_AirValue(String stationName, String dateTime, 
+			String rkhaiGrade, String rkhaiValue){
 		
 		try{
 				Class.forName(JDBC_DRIVER);
@@ -88,7 +90,9 @@ public class DBConnection {
 				Integer khaiGrade;
 				Integer khaiValue;
 				
-				if(rkhaiGrade.equals("")||rkhaiGrade.equals("-")) {
+				System.out.println(rkhaiGrade+" // "+rkhaiValue);
+				
+				if(rkhaiGrade==null||rkhaiGrade.equals("")||rkhaiGrade.equals("-")) {
 					rkhaiGrade = null;
 					khaiGrade = null;
 					pstmt.setNull(3, Types.INTEGER);
@@ -97,7 +101,7 @@ public class DBConnection {
 					pstmt.setInt(3, khaiGrade);
 				}
 					
-				if(rkhaiValue.equals("")||rkhaiValue.equals("-")) {
+				if(rkhaiValue==null||rkhaiValue.equals("")||rkhaiValue.equals("-")) {
 					rkhaiValue = null;
 					khaiValue = null;
 					pstmt.setNull(4, Types.INTEGER);
@@ -137,4 +141,3 @@ public class DBConnection {
 	}
 
 }
-
