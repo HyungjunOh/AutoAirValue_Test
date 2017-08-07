@@ -17,7 +17,7 @@ public class DBConnection {
 	static final String DB_URL = "jdbc:mysql://localhost:3306/airdata?useSSL=false&characterEncoding=utf8";
 	
 	static final String USERNAME = "root";
-	static final String PASSWORD = "1111";
+	static final String PASSWORD = "csedbadmin";
 
 	public static Connection getConn(){
 		

@@ -46,12 +46,12 @@ public class Main {
 		
 		Calendar cal = Calendar.getInstance();
 		
-		int am_pm = cal.get(Calendar.AM_PM);
-		int hour = cal.get(Calendar.HOUR);
+//		int am_pm = cal.get(Calendar.AM_PM);
+//		int hour = cal.get(Calendar.HOUR);
 		int minute = cal.get(Calendar.MINUTE);
 		
 		//timeFlag의 분마다 리퀘스트.
-		int timeFlag = 25;
+		int timeFlag = 12;
 		int waitTime = 0;
 		
 		if( minute > timeFlag) {
